@@ -55,7 +55,10 @@ etl-databricks-pyspark/
 
 ## License
 
-MIT License
+## License
+
+This project is licensed by **Jihad Hasan (jihadhasan210)** under the MIT License.
+
 
 
 
