@@ -21,7 +21,7 @@ The pipeline integrates **population** and **CO₂ emissions** data to produce a
   - Delta Lake  
 
 - **Execution Environment:**  
-  Databricks Community Edition (CSV files uploaded manually to DBFS)
+  Databricks Free Edition 
 
 ---
 
@@ -70,9 +70,6 @@ etl-databricks-pyspark/
   Source: https://github.com/owid/co2-data  
   Fields: `Country`, `Year`, `CO₂`, `CO₂ per capita`
 
-> ⚠️ **Note**  
-> Databricks Community Edition does **not allow direct internet downloads** using `urllib`.  
-> CSV files must be **manually uploaded to DBFS** before running the notebooks.
 
 ---
 
