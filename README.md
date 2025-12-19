@@ -1,64 +1,102 @@
-# ETL Project: COVID-19 Analytics Pipeline
+# 🌍 ETL Project: Population & CO₂ Analytics Pipeline
 
-This project demonstrates a **complete ETL pipeline** built in **Databricks Community Edition** using **PySpark**. It is designed to be **GitHub-friendly** and showcase your data engineering skills.
+This project demonstrates a **complete ETL pipeline** built in **Databricks Community Edition** using **PySpark**.  
+It follows **data engineering best practices** and is designed to be **GitHub-friendly** for portfolio and interview purposes.
 
-## Project Overview
+The pipeline integrates **population** and **CO₂ emissions** data to produce analytics-ready datasets using the **Medallion Architecture (Bronze → Silver → Gold)**.
 
-- **Objective:** Extract COVID-19 and population data from public internet sources, transform and clean it, and generate analytical tables.
-- **Architecture:** Bronze / Silver / Gold (Medallion) pattern.
-- **Technologies:** Databricks Community Edition, PySpark, Delta Lake.
+---
 
-## Repository Structure
+## 🚀 Project Overview
 
+- **Objective:**  
+  Ingest population and CO₂ emissions data from public datasets, clean and transform the data, and generate analytical metrics such as **CO₂ emissions per 1,000 people**.
+
+- **Architecture:**  
+  Medallion (Bronze / Silver / Gold)
+
+- **Technologies:**  
+  - Databricks Community Edition  
+  - PySpark  
+  - Delta Lake  
+
+- **Execution Environment:**  
+  Databricks Community Edition (CSV files uploaded manually to DBFS)
+
+---
+
+## 🧱 Architecture Breakdown
+
+### 🥉 Bronze Layer – Raw Ingestion
+- Reads raw CSV files from DBFS  
+- Applies schema inference  
+- Stores raw data as Delta tables  
+
+### 🥈 Silver Layer – Clean & Transform
+- Renames columns for consistency  
+- Casts data types  
+- Filters and selects relevant fields  
+
+### 🥇 Gold Layer – Analytics
+- Joins population and CO₂ datasets by **country and year**  
+- Computes derived metrics (e.g. CO₂ per 1,000 people)  
+- Produces analytics-ready Delta tables  
+
+---
+
+## 📁 Repository Structure
 
 ```
 etl-databricks-pyspark/
 ├─ notebooks/
-│ ├─ 01_ingest_bronze.ipynb
-│ ├─ 02_transform_silver.ipynb
-│ └─ 03_analytics_gold.ipynb
+│ ├─ 01_bronze_ingest.ipynb
+│ ├─ 02_silver_transform.ipynb
+│ └─ 03_gold_analytics.ipynb
 ├─ README.md
-├─ requirements.txt # optional
 └─ LICENSE
 ```
 
 
 
-## Data Sources
+---
 
-- COVID-19 daily reports CSV: [Johns Hopkins GitHub](https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/01-01-2024.csv)
-- Global population CSV: [Population dataset](https://raw.githubusercontent.com/datasets/population/master/data/population.csv)
+## 📊 Data Sources
 
-## Execution Instructions
+- **Population Dataset**  
+  Source: https://github.com/datasets/population  
+  Fields: `Country Name`, `Country Code`, `Year`, `Population`
 
-1. Open **Databricks Community Edition**.
-2. Create a cluster (default runtime is sufficient).
-3. Upload the notebooks in order:
-   - `01_ingest_bronze.ipynb`
-   - `02_transform_silver.ipynb`
-   - `03_analytics_gold.ipynb`
-4. Execute notebooks sequentially.
-5. Explore results using SQL or Spark DataFrames.
+- **CO₂ Emissions Dataset**  
+  Source: https://github.com/owid/co2-data  
+  Fields: `Country`, `Year`, `CO₂`, `CO₂ per capita`
 
-## Notebook Descriptions
+> ⚠️ **Note**  
+> Databricks Community Edition does **not allow direct internet downloads** using `urllib`.  
+> CSV files must be **manually uploaded to DBFS** before running the notebooks.
 
-- **01_ingest_bronze.ipynb**: Reads data directly from public GitHub URLs and saves raw Delta tables (Bronze layer).
-- **02_transform_silver.ipynb**: Cleans and transforms the data, saving Silver Delta tables.
-- **03_analytics_gold.ipynb**: Joins datasets and computes analytical metrics, saving Gold Delta tables ready for BI or SQL analysis.
+---
 
-## Portfolio Highlights
+## 📐 Output (Gold Layer)
 
-- Uses **public datasets** for reproducibility.
-- Modular notebook structure demonstrates **ETL skills with PySpark and Delta Lake**.
-- Fully executable in **Databricks Community Edition**.
-- Easy to extend for incremental loads, streaming, or dashboards.
+The final dataset includes:
 
-## License
+- Country  
+- Year  
+- Population  
+- Total CO₂ emissions  
+- CO₂ per capita  
+- **CO₂ per 1,000 people**
 
-## License
+This table is suitable for:
+- BI dashboards  
+- Semantic models  
+- Time-series and cross-country analysis  
 
-This project is licensed by **Jihad Hasan (jihadhasan210)** under the MIT License.
+---
 
+## 📄 License
 
+This project is licensed and owned by **Jihad Hasan**  
+GitHub: `jihadhasan210`
 
 
